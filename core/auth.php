@@ -38,4 +38,12 @@ class Auth {
         }
     }
 }
-?>
+
+/* ------------------ Thêm 2 hàm toàn cục cho code cũ ------------------ */
+function require_login($redirect = 'index.php?controller=login&action=index') {
+    Auth::requireLogin($redirect);
+}
+
+function check_permission(array $allowedRoles, $redirect = 'index.php?controller=home&action=index') {
+    Auth::checkPermission($allowedRoles, $redirect);
+}

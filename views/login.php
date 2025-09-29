@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.lovepik.com/bg/20240514/Stunning-3D-Interior-Visualization-Hotel-Lobby-Hallway-Background_11969099_wh1200.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/3379404/pexels-photo-3379404.jpeg');
             background-size: cover;
             background-position: center;
         }
