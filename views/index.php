@@ -25,7 +25,7 @@ main {
     justify-content: flex-start;
     align-items: center;
     padding: 40px 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%), url('https://png.pngtree.com/background/20240112/original/pngtree-timeless-design-3d-rendering-of-a-hotel-lobby-with-classic-styling-picture-image_7231679.jpg') no-repeat center center fixed;
+    background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%), url('https://images.pexels.com/photos/14011664/pexels-photo-14011664.jpeg') no-repeat center center fixed;
     background-size: cover;
     background-blend-mode: overlay;
 }
@@ -131,7 +131,8 @@ main {
         </a>
         <?php endif; ?>
 
-        <a href="index.php?controller=chamcong&action=index" class="dashboard-card">
+        <a href="index.php?controller=Chamcong&action=index
+" class="dashboard-card">
             <i class="fas fa-clock"></i>
             <h3>Quản lý chấm công</h3>
         </a>
@@ -145,10 +146,12 @@ main {
         </a>
 
         <?php if ($is_admin): ?>
-        <a href="index.php?controller=quanlybangluong&action=index" class="dashboard-card">
-            <i class="fas fa-money-check-dollar"></i>
-            <h3>Quản lý bảng lương</h3>
-        </a>
+     <a href="index.php?controller=Quanlybangluong&action=index" class="dashboard-card">
+    <i class="fas fa-money-check-dollar"></i>
+    <h3>Quản lý bảng lương</h3>
+</a>
+
+
         <?php endif; ?>
     </div>
 </main>
