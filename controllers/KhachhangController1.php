@@ -28,23 +28,22 @@ class KhachhangController1 {
         include __DIR__ . '/../views/khachhang.php';
     }
 
-    // Thêm hoặc cập nhật khách hàng
+    // Tên phương thức là createOrUpdate, nhưng giờ chỉ còn chức năng Update
     public function createOrUpdate() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'tai_khoan_khachhang_id' => !empty($_POST['tai_khoan_khachhang_id']) ? (int)$_POST['tai_khoan_khachhang_id'] : null,
-                'ho_ten' => $_POST['ho_ten'] ?? '',
-                'so_dien_thoai' => $_POST['so_dien_thoai'] ?? '',
-                'email' => $_POST['email'] ?? '',
-                'ngay_sinh' => $_POST['ngay_sinh'] ?? null,
-                'gioi_tinh' => $_POST['gioi_tinh'] ?? null,
-                'cccd' => $_POST['cccd'] ?? null,
-                'dia_chi' => $_POST['dia_chi'] ?? null
-            ];
-
-            if (isset($_POST['them'])) {
-                $this->khachhangModel->create($data);
-            } elseif (isset($_POST['capnhat'])) {
+            // Chỉ xử lý khi người dùng nhấn nút 'capnhat'
+            if (isset($_POST['capnhat'])) {
+                $data = [
+                    'tai_khoan_khachhang_id' => !empty($_POST['tai_khoan_khachhang_id']) ? (int)$_POST['tai_khoan_khachhang_id'] : null,
+                    'ho_ten' => $_POST['ho_ten'] ?? '',
+                    'so_dien_thoai' => $_POST['so_dien_thoai'] ?? '',
+                    'email' => $_POST['email'] ?? '',
+                    'ngay_sinh' => $_POST['ngay_sinh'] ?? null,
+                    'gioi_tinh' => $_POST['gioi_tinh'] ?? null,
+                    'cccd' => $_POST['cccd'] ?? null,
+                    'dia_chi' => $_POST['dia_chi'] ?? null
+                ];
+                
                 $id = (int)$_POST['id_khachhang'];
                 $this->khachhangModel->update($id, $data);
             }

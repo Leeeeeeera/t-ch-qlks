@@ -3,6 +3,7 @@ include __DIR__ . '/layouts/header.php';
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
+    /* CSS không thay đổi */
     body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; margin: 0; padding: 0;}
     .container {padding: 30px; max-width: 1400px; margin: 0 auto;}
     .header-container {display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 25px;}
@@ -16,7 +17,6 @@ include __DIR__ . '/layouts/header.php';
     .form-row input, .form-row select {width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 8px;}
     .form-actions {display: flex; justify-content: flex-end; gap: 15px; margin-top: 20px;}
     .form-actions button {padding: 12px 25px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; color: #fff;}
-    .btn-them {background-color: #28a745;} .btn-them:hover {background-color: #218838;}
     .btn-capnhat {background-color: #ffc107; color: #000;} .btn-capnhat:hover {background-color: #e0a800;}
     table {width: 100%; border-collapse: collapse; background-color: #fff; border-radius: 12px; overflow: hidden; margin-top: 20px;}
     th, td {padding: 15px; border-bottom: 1px solid #dee2e6;}
@@ -35,12 +35,13 @@ include __DIR__ . '/layouts/header.php';
         </form>
     </div>
 
+    <?php if ($edit_data): ?>
     <div class="form-box">
-        <h3><i class="fas fa-user-plus"></i> <?= $edit_data ? "Sửa Khách hàng" : "Thêm Khách hàng Mới" ?></h3>
-        <form method="post">
-            <?php if ($edit_data): ?>
-                <input type="hidden" name="id_khachhang" value="<?= $edit_data['id_khachhang'] ?>">
-            <?php endif; ?>
+        <h3><i class="fas fa-edit"></i> Sửa thông tin Khách hàng</h3>
+        
+        <form method="post" action="index.php?controller=khachhang&action=createOrUpdate">
+            
+            <input type="hidden" name="id_khachhang" value="<?= $edit_data['id_khachhang'] ?>">
 
             <div class="form-row">
                 <input type="number" name="tai_khoan_khachhang_id" placeholder="ID tài khoản" value="<?= $edit_data['tai_khoan_khachhang_id'] ?? '' ?>">
@@ -48,9 +49,9 @@ include __DIR__ . '/layouts/header.php';
                 <input type="date" name="ngay_sinh" value="<?= $edit_data['ngay_sinh'] ?? '' ?>">
                 <select name="gioi_tinh">
                     <option value="">Giới tính</option>
-                    <option value="Nam" <?= ($edit_data && $edit_data['gioi_tinh']=='Nam')?'selected':'' ?>>Nam</option>
-                    <option value="Nữ" <?= ($edit_data && $edit_data['gioi_tinh']=='Nữ')?'selected':'' ?>>Nữ</option>
-                    <option value="Khác" <?= ($edit_data && $edit_data['gioi_tinh']=='Khác')?'selected':'' ?>>Khác</option>
+                    <option value="Nam" <?= ($edit_data['gioi_tinh']=='Nam')?'selected':'' ?>>Nam</option>
+                    <option value="Nữ" <?= ($edit_data['gioi_tinh']=='Nữ')?'selected':'' ?>>Nữ</option>
+                    <option value="Khác" <?= ($edit_data['gioi_tinh']=='Khác')?'selected':'' ?>>Khác</option>
                 </select>
                 <input type="text" name="so_dien_thoai" placeholder="Số điện thoại" value="<?= $edit_data['so_dien_thoai'] ?? '' ?>" required>
                 <input type="email" name="email" placeholder="Email" value="<?= $edit_data['email'] ?? '' ?>">
@@ -59,18 +60,13 @@ include __DIR__ . '/layouts/header.php';
             </div>
 
             <div class="form-actions">
-                <?php if ($edit_data): ?>
-                    <button type="submit" name="capnhat" class="btn-capnhat">
-                        <i class="fas fa-edit"></i> Cập nhật
-                    </button>
-                <?php else: ?>
-                    <button type="submit" name="them" class="btn-them">
-                        <i class="fas fa-plus-circle"></i> Thêm
-                    </button>
-                <?php endif; ?>
+                <button type="submit" name="capnhat" class="btn-capnhat">
+                    <i class="fas fa-edit"></i> Cập nhật
+                </button>
             </div>
         </form>
     </div>
+    <?php endif; ?>
 
     <table>
         <thead>

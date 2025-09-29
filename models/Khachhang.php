@@ -29,35 +29,20 @@ class Khachhang {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Thêm khách hàng
-    public function create($data) {
-        $sql = "INSERT INTO `$this->table` (tai_khoan_khachhang_id, ho_ten, so_dien_thoai, email, ngay_sinh, gioi_tinh, cccd, dia_chi) 
-                VALUES (:tai_khoan, :ho_ten, :sdt, :email, :ngay_sinh, :gioi_tinh, :cccd, :dia_chi)";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([
-            ':tai_khoan' => $data['tai_khoan_khachhang_id'],
-            ':ho_ten' => $data['ho_ten'],
-            ':sdt' => $data['so_dien_thoai'],
-            ':email' => $data['email'],
-            ':ngay_sinh' => $data['ngay_sinh'],
-            ':gioi_tinh' => $data['gioi_tinh'],
-            ':cccd' => $data['cccd'],
-            ':dia_chi' => $data['dia_chi']
-        ]);
-    }
+    // PHƯƠNG THỨC create() ĐÃ BỊ XÓA
 
     // Cập nhật khách hàng
     public function update($id, $data) {
         $sql = "UPDATE `$this->table` SET 
-                    tai_khoan_khachhang_id = :tai_khoan,
-                    ho_ten = :ho_ten,
-                    so_dien_thoai = :sdt,
-                    email = :email,
-                    ngay_sinh = :ngay_sinh,
-                    gioi_tinh = :gioi_tinh,
-                    cccd = :cccd,
-                    dia_chi = :dia_chi
-                WHERE id_khachhang = :id";
+                        tai_khoan_khachhang_id = :tai_khoan,
+                        ho_ten = :ho_ten,
+                        so_dien_thoai = :sdt,
+                        email = :email,
+                        ngay_sinh = :ngay_sinh,
+                        gioi_tinh = :gioi_tinh,
+                        cccd = :cccd,
+                        dia_chi = :dia_chi
+                    WHERE id_khachhang = :id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([
             ':tai_khoan' => $data['tai_khoan_khachhang_id'],

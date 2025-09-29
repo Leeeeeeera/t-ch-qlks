@@ -24,6 +24,44 @@ class Sudungdichvu {
         ]);
     }
 
+    // ================================================================
+    // CÁC PHƯƠ...C MỚI Đ...ỢC THÊM VÀO ĐỂ SỬA DỮ LIỆU
+    // ================================================================
+
+    /**
+     * Lấy thông tin một lần sử dụng dịch vụ bằng ID
+     */
+    public function getSudungdvById($id_sudungdv) {
+        $sql = "SELECT * FROM sudungdichvu WHERE id_sudungdv = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':id' => $id_sudungdv]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Cập nhật thông tin sử dụng dịch vụ
+     */
+    public function updateSudungdv($id_sudungdv, $id_datphong, $id_dichvu, $so_luong, $thanh_tien) {
+        $sql = "UPDATE sudungdichvu SET
+                    id_datphong = :id_datphong,
+                    id_dichvu = :id_dichvu,
+                    so_luong = :so_luong,
+                    thanh_tien = :thanh_tien
+                WHERE id_sudungdv = :id_sudungdv";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            ':id_datphong' => $id_datphong,
+            ':id_dichvu'   => $id_dichvu,
+            ':so_luong'    => $so_luong,
+            ':thanh_tien'  => $thanh_tien,
+            ':id_sudungdv' => $id_sudungdv
+        ]);
+    }
+
+    // ================================================================
+    // CÁC PHƯƠ...C CŨ VẪN GIỮ NGUYÊN
+    // ================================================================
+
     public function getPhongDat() {
         $sql = "SELECT datphong.*, phong.so_phong, khachhang.ho_ten
                 FROM datphong
